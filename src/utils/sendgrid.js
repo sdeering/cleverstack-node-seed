@@ -1,4 +1,8 @@
-
+/**
+ * @doc module
+ * @name SendGrid
+ * @description SendGrid description...
+ */
 module.exports = function(config){
   var Q = require('q')
     , sendgrid = require( "sendgrid" )( config.apiUser, config.apiKey );
@@ -6,7 +10,7 @@ module.exports = function(config){
   return function( to, from, subject, text, html ){
       var deferred = Q.defer();
 
-     
+
       var payload = {
         to      : to,
         from    : from,
@@ -19,13 +23,13 @@ module.exports = function(config){
       }
 
       sendgrid.send( payload, function( err, response ) {
-        
-        if (err) { 
+
+        if (err) {
           console.log("SendGrid Error:  \n",err.toString());
           deferred.reject(err);
           return;
         }
-        
+
         deferred.resolve(response);
       });
 

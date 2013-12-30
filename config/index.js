@@ -1,3 +1,6 @@
+/*
+  This file is used to dynamically load the configuration files using nconf node package.
+*/
 var files = [ __dirname + '/global.json', __dirname + '/security.json' ]
   , ormJson = __dirname + '/orm.json'
   , odmJson = __dirname + '/odm.json'

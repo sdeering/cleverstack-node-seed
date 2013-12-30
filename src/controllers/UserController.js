@@ -1,3 +1,8 @@
+/**
+ * @doc module
+ * @name UserController
+ * @description This module contains the user controller for the back-end API.
+*/
 var crypto = require('crypto'),
     passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy;
@@ -30,6 +35,17 @@ module.exports = function(UserService) {
     return (require('classes').Controller).extend({
         service: UserService,
 
+        /**
+         * @doc function
+         * @name UserController.functions.requiresLogin
+         * @param {object} req The request object.
+         * @param {object} res The response object.
+         * @param {object} next The next action.
+         * @description
+         *
+         * Checks if the request action requires a login or not.
+         *
+         */
         requiresLogin: function(req, res, next) {
             if (!req.isAuthenticated())
                 return res.send(401, 'requiresLogin');
@@ -66,10 +82,21 @@ module.exports = function(UserService) {
             next();
         },
 
+        /**
+         * @doc function
+         * @name UserController.functions.isEmailAvailable
+         * @param {object} req The request object.
+         * @param {object} res The response object.
+         * @param {object} next The next action.
+         * @description
+         *
+         * Checks if the users requested email address is available for register.
+         *
+         */
         isEmailAvailable: function(req, res, next) {
 
             var uEmail = req.body.email,
-                available = false;
+                isAvailable = false;
 
             if (!uEmail) {
                 res.send(401, {});
@@ -79,13 +106,18 @@ module.exports = function(UserService) {
             console.log("Checking new registrant " + uEmail + "...");
             UserService.emailExists(uEmail)
                 .then(function(user) {
+
+                    // If no user was found it must be available
                     if (!user) {
                         console.log('Email is available...');
-                        available = true;
+                        isAvailable = true;
                     }
+
+                    // Send response
                     res.send(200, {
-                        status: available
+                        status: isAvailable
                     });
+
                 })
                 .fail(function() {
                     res.send(401, {});

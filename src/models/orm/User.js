@@ -1,3 +1,8 @@
+/**
+ * @doc module
+ * @name UserModel
+ * @description Click "view source" to view the model.
+*/
 module.exports = function(sequelize, DataTypes) {
     return sequelize.define("User", {
         id: {

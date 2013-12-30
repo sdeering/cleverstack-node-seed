@@ -1,3 +1,8 @@
+/**
+ * @doc module
+ * @name UserService
+ * @description This module contains all the user services for the back-end API.
+ */
 var BaseService = require('./BaseService'),
     Q = require('q'),
     crypto = require('crypto'),
@@ -17,6 +22,16 @@ module.exports = function(db, UserModel, config) {
     }
 
     UserService = BaseService.extend({
+
+        /**
+         * @doc function
+         * @name UserService.functions.authenticate
+         * @param {object} credentials The users username & password.
+         * @description
+         *
+         * Checks if the user exists in the database and if they do updates thier accessedAt timestamp.
+         *
+         */
         authenticate: function(credentials) {
             var deferred = Q.defer(),
                 service = this;
@@ -49,6 +64,16 @@ module.exports = function(db, UserModel, config) {
             return deferred.promise;
         },
 
+        /**
+         * @doc function
+         * @name UserService.functions.getUserFullDataJson
+         * @param {object} options Where clause expression for finding user.
+         * @return {object} user Returns User object.
+         * @description
+         *
+         * Checks if the user exists in the database and if they do updates thier accessedAt timestamp.
+         *
+         */
         getUserFullDataJson: function(options) {
             var deferred = Q.defer();
 
@@ -143,6 +168,15 @@ module.exports = function(db, UserModel, config) {
                 });
         },
 
+        /**
+         * @doc function
+         * @name UserService.functions.createUser
+         * @param {object} data Data for new user.
+         * @description
+         *
+         * TBD...
+         *
+         */
         createUser: function(data) {
             // delete data.createdAt;
             // delete data.accessedAt;

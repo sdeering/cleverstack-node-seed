@@ -1,0 +1,12 @@
+@doc overview
+@id index
+@name CleverStack Node Seed API
+@description
+
+#CleverStack Node Seed API
+
+This is an example of the back-end API provided by the NodeJS Seed.
+
+<page-list></page-list>
+
+<pager></pager>

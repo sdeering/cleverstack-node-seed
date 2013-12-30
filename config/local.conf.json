@@ -1,0 +1,36 @@
+/*
+  CleverStack Node Environment Configuration.
+  This config can be used to change the ports associated with your app development servers.
+*/
+{
+  /*
+    Express Server
+  */
+  "web": {
+    "port": "8080", // default 8080
+    "dir": "./src", // node app source files directory - default "./src"
+    "hostname": "localhost" // using 0.0.0.0 will make the server accessible from anywhere
+  },
+
+  /*
+    Testing Server
+  */
+  "test": {
+    "port": "8000", // default 8000
+    "dir": "./test", // if you change this it must reflect in /config/spec-*.conf.js
+    "coverage": {
+        "port": "6666", // default 6666
+        "dir": "./test/coverage/" // browsable directory for unit testing code coverage reports
+    }
+  },
+
+  /*
+    API Documentation Server
+  */
+  "docs": {
+    "port": "8888", // default 8888
+    "dir": "./docs", // used to hold the latest docs build
+    "showDocularDocs": "true" // setting to "true" will build the Official Docular API docs also
+  }
+
+}
