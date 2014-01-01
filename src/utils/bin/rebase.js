@@ -1,12 +1,14 @@
 /*
     Rebase the database - delete current database and create a new one based on ORM schema.
 */
-var fs = require('fs')
+
+var srcDir = './../../'
+  , fs = require('fs')
   , Injector = require('utils').injector
   , modelInjector = require('utils').modelInjector;
 
 // Get the application config
-var config = require( './../../config');
+var config = require( srcDir + '../config' );
 
 // Setup ORM
 var Sequelize = require('sequelize');
@@ -17,7 +19,7 @@ var sequelize = new Sequelize(
     config.db.options
 );
 
-GLOBAL.injector = Injector(  './../services', './../controllers' );
+GLOBAL.injector = Injector(  srcDir + 'services', srcDir + 'controllers' );
 injector.instance( 'config', config );
 injector.instance( 'db', sequelize );
 injector.instance( 'sequelize', sequelize );
@@ -35,7 +37,7 @@ console.log('Forcing Database to be created! (Note: All your data will disapear!
 sequelize
     .sync({force: true})
     .success(function () {
-        fs.readFile( './../../schema/' + config.db.options.dialect + '.sql', function(err, sql) {
+        fs.readFile( srcDir + '../schema/' + config.db.options.dialect + '.sql', function(err, sql) {
             if ( err || !sql ) {
                 console.log('Database is rebased');
             } else {

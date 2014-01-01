@@ -28,7 +28,13 @@
     "colors": "~0.6.2",
     "autostrip-json-comments": "~0.0.4",
     "async": "~0.2.9",
+    "cors": "~2.1.1",
+    "debug": "~0.7.4",
+    "helmet": "~0.1.2",
 
+    "sendgrid": "",
+    "socket.io": "",
+    "mongoose": "",
     "memcached": "",
     "uberclass": "",
     "uberproto": "~1.1.0",

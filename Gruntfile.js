@@ -124,10 +124,10 @@ module.exports = function (grunt) {
     // Shell execute commands
     exec: {
       rebase: {
-        cmd: 'node src/utils/rebase.js'
+        cmd: 'node src/utils/bin/rebase.js'
       },
       seed: {
-        cmd: 'node src/utils/seedModels.js'
+        cmd: 'node src/utils/bin/seedModels.js'
       }
     }
 

@@ -1,14 +1,16 @@
 /*
-    Seed the database - populate database tables based on model seed data.
+    Seed the database - populate database tables based on model seed data. 
 */
-var crypto = require('crypto')
+
+var srcDir = './../../'
+  , crypto = require('crypto')
   , async = require('async')
   , inflect = require('i')()
   , modelInjector = require('utils').modelInjector
   , Injector = require('utils').injector;
 
 // Get the application config
-var config = require('./../../config');
+var config = require( srcDir + '../config');
 
 // Setup ORM
 var Sequelize = require('sequelize');
@@ -19,7 +21,7 @@ var sequelize = new Sequelize(
     config.db.options
 );
 
-GLOBAL.injector = Injector( './../services', './../controllers' );
+GLOBAL.injector = Injector(  srcDir + 'services', srcDir + 'controllers' );
 injector.instance( 'config', config );
 injector.instance( 'db', sequelize );
 injector.instance( 'sequelize', sequelize );
@@ -31,7 +33,7 @@ injector.instance( 'models', models );
 // Run our model injection service
 modelInjector( models );
 
-var seedData = require('./../../schema/seedData.json');
+var seedData = require( srcDir + '../schema/seedData.json' );
 
 var assocMap = {};
 Object.keys(seedData).forEach(function( modelName ) {
